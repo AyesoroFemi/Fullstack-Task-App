@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"task-app/internal/repo"
+	"task-app/internal/repository"
 	"time"
 
 	"github.com/go-chi/chi/v5"
@@ -13,7 +13,7 @@ import (
 
 type application struct {
 	config config
-	store repo.TaskRepo
+	store repository.TaskRepo
 }
 
 type config struct {

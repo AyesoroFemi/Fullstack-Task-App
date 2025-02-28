@@ -1,10 +1,10 @@
 package main
 
 import (
-	"task-app/internal/db"
-	"task-app/internal/repo"
 	"fmt"
 	"log"
+	"task-app/internal/db"
+	"task-app/internal/repository"
 )
 
 
@@ -30,7 +30,7 @@ func main() {
 	defer db.Close()
 	log.Println("database connection pool established")
 
-	store := repo.NewStorage(db)
+	store := repository.NewStorage(db)
 
 	app := &application{
 		config:  dbConfig,

@@ -36,7 +36,6 @@ func New( maxOpenConns int, maxIdleConns int, maxIdleTime string) (*sql.DB, erro
 
 	createTable(db)
 
-
 	return db, nil
 }
 

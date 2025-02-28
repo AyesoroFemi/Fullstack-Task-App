@@ -1,0 +1,62 @@
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    font-family: sans-serif;
+    font-weight: lighter;
+}
+
+.task__card {
+    /* border: 3px solid black; */
+}
+
+.form {
+    margin-bottom: 20px;
+}
+
+.card__form {
+    display: flex;
+    gap: 10px
+}
+.submit {
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+input[type="text"] {
+    width: 90%;
+    outline: none;
+    border: 1px solid black;
+    padding-left: 4px;
+    border-radius: 4px;
+}
+
+.card span{
+    margin-left: 5px;
+}
+
+.card {
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.card p {
+ padding: 0 0;
+}
+
+.del {
+    margin-inline-start: auto;
+    border: 1px solid red;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: transparent;
+}
+
+.task__title {
+    text-decoration: line-through;
+}

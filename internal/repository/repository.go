@@ -1,4 +1,4 @@
-package repo
+package repository
 
 import (
 	"database/sql"
@@ -22,4 +22,3 @@ func NewStorage(db *sql.DB) TaskRepo {
 		TaskStorage: &TaskStore{db},
 	}
 }
-

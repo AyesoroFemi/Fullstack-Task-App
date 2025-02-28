@@ -1,10 +1,9 @@
-package repo
+package repository
 
 import (
 	"database/sql"
 	"errors"
 	"fmt"
-	"log"
 	"task-app/internal/model"
 	"time"
 )
@@ -27,7 +26,7 @@ func (t *TaskStore) CreateTask(task *model.Task) error {
 
 	stmt, err := t.db.Prepare(query)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	completedInt := 0
@@ -37,7 +36,7 @@ func (t *TaskStore) CreateTask(task *model.Task) error {
 
 	_, err = stmt.Exec(task.Title, completedInt)
 	if err != nil {
-		log.Fatal(err)
+		return err
 	}
 
 	return nil

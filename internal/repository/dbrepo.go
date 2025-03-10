@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"task-app/internal/model"
-	"time"
+	// "time"
 )
 
-var QueryTimeoutDuration = time.Second * 5
+// var QueryTimeoutDuration = time.Second * 5
 
 type TaskStore struct {
 	db *sql.DB

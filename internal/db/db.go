@@ -1,7 +1,7 @@
 package db
 
 import (
-	"context"
+	// "context"
 	"database/sql"
 	"log"
 	"time"
@@ -27,10 +27,7 @@ func New( maxOpenConns int, maxIdleConns int, maxIdleTime string) (*sql.DB, erro
 	}
 	db.SetConnMaxIdleTime(duration)
 
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
-	defer cancel()
-
-	if err = db.PingContext(ctx); err != nil {
+	if err = db.Ping(); err != nil {
 		return nil, err
 	}
 

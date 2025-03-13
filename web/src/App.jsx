@@ -83,7 +83,7 @@ function App() {
               </div>
             )
           })}
-        </div> : <h1>No task added yet</h1>}
+        </div> : <h3>No task added yet</h3>}
       </div>
     </>
   )

@@ -1,3 +1,4 @@
+
 # 📝 Task App - Golang (Chi Router) + React (Vite)
 
 A simple full-stack Task Management Application built with **Go** (using Chi Router, SQLite, and clean architecture principles) and **React JS** (Vite) for the frontend.
@@ -11,9 +12,9 @@ The purpose of this project is to learn and demonstrate concepts like:
 
 ---
 
+## 📂 Project Folder Structure
 
-## 📂 Project Structure
-
+```bash
 /task-app-backend
 │
 ├── cmd/                          # Entry point
@@ -38,27 +39,50 @@ The purpose of this project is to learn and demonstrate concepts like:
 │
 ├── go.mod
 └── go.sum
+```
 
-## 📌 REST API Routes (Sample)
+---
 
-In your `cmd/api.go`, routes are defined using Chi Router like so:
+## 📌 REST API Routes
 
+In your `cmd/api.go`, routes are defined using **Chi Router** like so:
+
+```go
 r.Route("/v1/tasks", func(r chi.Router) {
     r.Get("/", app.getTaskHandler)         // Get all tasks
     r.Post("/", app.CreateTaskHandler)     // Create new task
     r.Put("/{id}", app.toggleTaskHandler)  // Toggle task completion
     r.Delete("/{id}", app.deleteHandler)   // Delete a task
-}) 
+})
+```
 
-▶️ Running the Backend (Go API)
-cd task-app 
-go run ./cmd   
+---
 
-⚛️ Running the Frontend (React + Vite)
-cd web 
-npm install    // Install node modules
-npm run dev   // for development server for react js
+## ▶️ Running the Backend (Go API)
 
- 
+```bash
+cd task-app
+go run ./cmd
+```
 
+---
 
+## ⚛️ Running the Frontend (React + Vite)
+
+```bash
+cd web
+npm install      # Install node modules
+npm run dev      # Start development server
+```
+
+---
+
+## 📖 Learning Outcomes
+
+This project helps reinforce:
+- How to structure a Go project cleanly
+- Abstracting logic using interfaces
+- Writing maintainable code
+- Building a full-stack application from backend to frontend
+
+---

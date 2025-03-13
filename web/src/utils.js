@@ -1,5 +1,5 @@
 
-const baseUrl = "http://localhost:8080/v1/tasks"
+export const baseUrl = "http://localhost:8080/v1/tasks"
 
 export const createTask = async (newTask) => {
     const res = await fetch(baseUrl, {
@@ -13,13 +13,13 @@ export const createTask = async (newTask) => {
   }
 
   export const deleteTask = async (id) => {
-    const res = await fetch(`http://localhost:8080/v1/tasks/${id}`, {
+    const res = await fetch(`${baseUrl}/${id}`, {
       method: "DELETE",
     })
   }
 
   export const updateTask = async (task) => {
-    const res = await fetch(`http://localhost:8080/v1/tasks/${task.id}`, {
+    const res = await fetch(`${baseUrl}/${task.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

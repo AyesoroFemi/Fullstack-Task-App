@@ -50,7 +50,8 @@ input[type="text"] {
 
 .del {
     margin-inline-start: auto;
-    border: 1px solid red;
+    /* border: 1px solid red; */
+    border: none;
     cursor: pointer;
     border-radius: 4px;
     font-size: 12px;

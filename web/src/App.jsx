@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { createTask, deleteTask, updateTask } from './utils'
+import { baseUrl, createTask, deleteTask, updateTask } from './utils'
+import Delete from "./assets/delete.svg"
 
-
-const baseUrl = "http://localhost:8080/v1/tasks"
 
 function App() {
   const [tasks, setTasks] = useState([])
   const [title, setTitle] = useState("")
 
-  // fetchTasks()
-
+  // function to get all the tasks
   const fetchTasks = async () => {
-      const response = await fetch(baseUrl)
-      const data = await response.json()
-      setTasks(data.data)
-      console.log("getting data", data)
+    const response = await fetch(baseUrl)
+    const data = await response.json()
+    setTasks(data.data)
+    console.log("getting data", data)
   }
 
   useEffect(() => {
@@ -23,13 +21,28 @@ function App() {
   }, [])
 
 
-  const handleDelete = async (taskId)  => {
+  // function to delete a task
+  const handleDelete = async (taskId) => {
     const confirm = window.confirm("Are you sure you want to delete this task")
-    if(!confirm) return 
+    if (!confirm) return
     await deleteTask(taskId)
     fetchTasks()
   }
 
+  
+  // function to toggle a task
+  const toggleTaskCompletion = async (task) => {
+    const updatedTask = {
+      ...task,
+      completed: task.completed ? 0 : 1
+    }
+    await updateTask(updatedTask)
+    fetchTasks()
+  }
+
+
+
+// Handle submit function for form submission
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -48,25 +61,15 @@ function App() {
     setTitle("")
   }
 
-  const toggleTaskCompletion = async (task) => {
-    const updatedTask = {
-      ...task,
-      completed: task.completed ? 0 : 1 
-    }
-    await updateTask(updatedTask)
-    fetchTasks()
-  }
-
   return (
     <>
       <div className='container'>
-        <h1>Task App</h1>
+        <h3>Task App</h3>
         <form className='form' onSubmit={handleSubmit}>
           <div className='card__form'>
             <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
             <button className='submit' type='submit'>Submit</button>
           </div>
-
         </form>
         {tasks?.length > 0 ? <div className='task__card'>
           {tasks.map((task) => {
@@ -74,7 +77,9 @@ function App() {
               <div className='card' key={task.id}>
                 <input type="checkbox" checked={task.completed} onChange={() => toggleTaskCompletion(task)} />
                 <span className={`card__title ${task.completed ? "task__title" : ""}`} >{task.title}</span>
-                <button onClick={() => handleDelete(task.id)} className='del'>delete</button>
+                <button onClick={() => handleDelete(task.id)} className='del'>
+                  <img src={Delete} alt="delete icon" />
+                </button>
               </div>
             )
           })}

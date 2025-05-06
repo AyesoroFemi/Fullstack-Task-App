@@ -13,7 +13,7 @@ import (
 
 type application struct {
 	config config
-	store repository.TaskRepo
+	store repository.TaskStorage
 }
 
 type config struct {
@@ -66,6 +66,3 @@ func (app *application) run(mux http.Handler) error {
 
 	return nil
 }
-
-
-

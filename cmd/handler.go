@@ -36,14 +36,13 @@ func (app *application) toggleTaskHandler(w http.ResponseWriter, r *http.Request
 		http.Error(w, "Invalid task ID", http.StatusBadRequest)
 		return
 	}
-
-	err = app.store.TaskStorage.ToggleTaskCompletion(id)
+	err = app.store.ToggleTaskCompletion(id)
 	if err != nil {
 		http.Error(w, "Failed to toggle task", http.StatusInternalServerError)
 		return
 	}
 
-	toggleTask, err := app.store.TaskStorage.GetSingleTask(id)
+	toggleTask, err := app.store.GetSingleTask(id)
 	if err != nil {
 		http.Error(w, "Failed to fetch updated task", http.StatusInternalServerError)
 		return
@@ -61,7 +60,7 @@ func (app *application) toggleTaskHandler(w http.ResponseWriter, r *http.Request
 
 
 func (app *application) getTaskHandler (w http.ResponseWriter, r *http.Request) {
-	getTasks, err := app.store.TaskStorage.GetAllTasks()
+	getTasks, err := app.store.GetAllTasks()
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return
@@ -94,7 +93,7 @@ func (app *application) CreateTaskHandler(w http.ResponseWriter, r *http.Request
 		Completed: t.Completed == 1,
 	}
 
-	err = app.store.TaskStorage.CreateTask(task)
+	err = app.store.CreateTask(task)
 	if err != nil {
 		http.Error(w, `{"error": "Failed to create task"}`, http.StatusInternalServerError)
 		return
@@ -115,7 +114,7 @@ func (app *application) deleteHandler (w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = app.store.TaskStorage.DeleteTask(id)
+	err = app.store.DeleteTask(id)
 	if err != nil {
 		http.Error(w, "Task not found", http.StatusNotFound)
 		return
